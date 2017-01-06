@@ -31,6 +31,8 @@ import { SalaryCalculatorModel } from './salaryCalculator.model';
     `
 })
 export class SalaryCalculatorComponent{
-    calculator : SalaryCalculatorModel = new SalaryCalculatorModel();
+    constructor(public calculator : SalaryCalculatorModel){
+        
+    }
 }
 

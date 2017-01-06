@@ -7,8 +7,12 @@ import { Component } from '@angular/core';
         <input type="text" [(ngModel)]="name" />
 
         <input type="button" value="Greet" (click)="greet()">
-        <h3>{{message}}</h3>
-        <input type="button" value="Clear" (click)="clear()" />
+        
+
+        <greet-display 
+            [displayMessage]="message"
+            (onClear)="clearMessage()"
+            ></greet-display>
     `
 })
 export class GreetComponent{
@@ -16,7 +20,7 @@ export class GreetComponent{
 
     name : string = '';
 
-    clear(){
+    clearMessage(){
         this.message = '';
     }
 

@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   template: `
     <h1>My App</h1>
     <hr/>
-    <salary-calculator></salary-calculator>
+    <greeter></greeter>
   `,
 })
 export class AppComponent  { 

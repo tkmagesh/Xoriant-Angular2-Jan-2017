@@ -1,3 +1,6 @@
+import { Injectable } from '@angular/core';
+
+@Injectable()
 export class SalaryCalculatorModel{
     basic : number = 0;
     hra : number = 0;
