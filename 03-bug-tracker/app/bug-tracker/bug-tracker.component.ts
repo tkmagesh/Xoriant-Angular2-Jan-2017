@@ -8,7 +8,7 @@ import BugOperations from './services/BugOperations.service';
         
         <section class="content">
             <section class="stats">
-                <span class="closed">{{getClosedCount()}}</span>
+                <span class="closed">{{ bugs | closedCount }}</span>
                 <span> / </span>
                 <span>{{bugs.length}}</span>
             </section>
@@ -30,7 +30,7 @@ import BugOperations from './services/BugOperations.service';
                             class="bugname" 
                             (click)="toggle(bug)"
                             [ngClass]="{closed : bug.isClosed}"
-                        >{{bug.name}}</span>
+                        >{{bug.name | trimText:40}}</span>
                         <div class="datetime">[Created At]</div>
                     </li>
                 </ol>
@@ -47,11 +47,12 @@ export class BugTrackerComponent{
 
     }
 
-    toggle(bug : IBug){
-        this.bugOperations.toggle(bug);
+    toggle(toBeToggledBug : IBug){
+        this.bugs = this.bugs.map(bug => bug === toBeToggledBug ? this.bugOperations.toggle(bug) : bug);
     }
     addNew(newBugName : string){
         let newBug = this.bugOperations.createNew(newBugName);
+        //this.bugs = this.bugs.concat([newBug]);
         this.bugs.push(newBug);
     }
 
@@ -68,6 +69,7 @@ export class BugTrackerComponent{
     }
 
     getClosedCount(){
+        console.info('get closed count triggered');
         return this.bugs.filter(bug => bug.isClosed).length;
     }
 }

@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 
 import { BugTrackerComponent } from './bug-tracker.component';
 import BugOperations  from './services/BugOperations.service';
-
+import TrimTextPipe from './pipes/trimText.pipe';
+import ClosedCountPipe from './pipes/closedCount';
 
 @NgModule({
     imports : [CommonModule, FormsModule],
-    declarations : [BugTrackerComponent],
+    declarations : [BugTrackerComponent, TrimTextPipe, ClosedCountPipe],
     providers : [BugOperations],
     exports : [BugTrackerComponent]
 })
