@@ -5,8 +5,8 @@ import { Pipe, PipeTransform } from '@angular/core';
     pure : true
 })
 export class SortPipe implements PipeTransform{
-    transform(data : Array<any>, attrName : string, isDescending : boolean = false) : Array<any>{
-        if (!data.length || !attrName)
+    transform(data : any, attrName : string, isDescending : boolean = false) : any{
+        if (!(data && data.length && attrName))
             return data;
         let comparer : IComparer = this.getComparer(attrName);
         if (isDescending)

@@ -1,6 +1,11 @@
-import { Component } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import IBug  from './models/IBug';
 import { BugStorage } from './services/BugStorage.service';
+import  BugOperations from './services/BugOperations.service';
+import { BugServer } from './services/BugServer.service';
+
+
+
 @Component({
     selector : 'bug-tracker',
     template : `
@@ -20,7 +25,7 @@ import { BugStorage } from './services/BugStorage.service';
             <section class="list">
                 <ol>
                     <bug-item 
-                        *ngFor="let bug of bugs | sort:sortAttrName:sortOrder" 
+                        *ngFor="let bug of bugFetchPromise | async  | sort:sortAttrName:sortOrder" 
                         [data]="bug"
                         (onToggle) = "toggle($event)"
                     ></bug-item>
@@ -31,20 +36,29 @@ import { BugStorage } from './services/BugStorage.service';
 
     `
 })
-export class BugTrackerComponent{
+export class BugTrackerComponent extends OnInit{
     bugs : Array<IBug> = new Array<IBug>();
 
-    constructor(private bugStorage : BugStorage){
-        this.bugs = this.bugStorage.getAll();
+    bugFetchPromise : Promise<Array<IBug>> = null;
+
+    ngOnInit(){
+        this.loadBugs();
+            
+    }
+    loadBugs(){
+        this.bugFetchPromise = this.bugServer.getAll();
+    }
+    constructor(private bugServer : BugServer, private bugStorage : BugStorage, private bugOperations : BugOperations){
+        super();
+        //this.bugs = this.bugStorage.getAll();
     }
 
     toggle(toBeToggledBug : IBug){
         this.bugs = this.bugs.map(bug => bug === toBeToggledBug ? this.bugStorage.toggle(bug) : bug);
     }
     addNew(newBugName : string){
-        let newBug = this.bugStorage.save(newBugName);
-        this.bugs = this.bugs.concat([newBug]);
-        //this.bugs.push(newBug);
+       this.bugServer.addNew(newBugName)
+        .then(() => this.loadBugs());
     }
 
     removeClosed(){

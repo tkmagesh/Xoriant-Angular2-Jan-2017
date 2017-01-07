@@ -14,44 +14,39 @@
     },
     {
       "id": 5,
-      "name": "[Default Bug]",
-      "isClosed": true,
-      "createdAt": "2016-12-23T09:49:35.721Z"
+      "name": "JSON server bugs",
+      "isClosed": false,
+      "createdAt": "2017-01-07T11:29:27.551Z"
     },
     {
       "id": 6,
-      "name": "This is a new bug in another controller",
+      "name": "JSON server bugs",
       "isClosed": false,
-      "createdAt": "2016-12-23T09:49:44.142Z"
+      "createdAt": "2017-01-07T11:29:28.876Z"
     },
     {
       "id": 7,
-      "name": "This is a new bug",
+      "name": "Another bug discovewre",
       "isClosed": false,
-      "createdAt": "2016-09-09T06:38:33.530Z"
+      "createdAt": "2017-01-07T11:30:42.167Z"
     },
     {
       "id": 8,
-      "name": "fetch calls not working",
+      "name": "Another bug discovewre",
       "isClosed": false,
-      "createdAt": "2016-12-30T05:27:09.504Z"
+      "createdAt": "2017-01-07T11:30:42.561Z"
     },
     {
       "id": 9,
-      "name": "Reactive extensions are not very reactive",
+      "name": "jasdlfj ;ladsjkflas;fas",
       "isClosed": false,
-      "createdAt": "2016-12-30T07:20:57.368Z"
+      "createdAt": "2017-01-07T11:43:44.934Z"
     },
     {
       "id": 10,
-      "name": "Reactive extensions are not very reactive",
+      "name": "jasdlfj ;ladsjkflas;fas",
       "isClosed": false,
-      "createdAt": "2016-12-30T07:20:58.307Z"
-    },
-    {
-      "id": 11,
-      "name": "blah blha blah",
-      "isClosed": false
+      "createdAt": "2017-01-07T11:43:45.688Z"
     }
   ],
   "employees": [
