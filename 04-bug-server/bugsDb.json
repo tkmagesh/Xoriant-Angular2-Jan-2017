@@ -1,0 +1,67 @@
+{
+  "bugs": [
+    {
+      "id": 3,
+      "name": "Server communication failure",
+      "isClosed": true,
+      "createdAt": "2016-09-09T06:38:33.530Z"
+    },
+    {
+      "id": 4,
+      "name": "Application not responding to user actions",
+      "isClosed": false,
+      "createdAt": "2016-12-23T09:35:03.401Z"
+    },
+    {
+      "id": 5,
+      "name": "[Default Bug]",
+      "isClosed": true,
+      "createdAt": "2016-12-23T09:49:35.721Z"
+    },
+    {
+      "id": 6,
+      "name": "This is a new bug in another controller",
+      "isClosed": false,
+      "createdAt": "2016-12-23T09:49:44.142Z"
+    },
+    {
+      "id": 7,
+      "name": "This is a new bug",
+      "isClosed": false,
+      "createdAt": "2016-09-09T06:38:33.530Z"
+    },
+    {
+      "id": 8,
+      "name": "fetch calls not working",
+      "isClosed": false,
+      "createdAt": "2016-12-30T05:27:09.504Z"
+    },
+    {
+      "id": 9,
+      "name": "Reactive extensions are not very reactive",
+      "isClosed": false,
+      "createdAt": "2016-12-30T07:20:57.368Z"
+    },
+    {
+      "id": 10,
+      "name": "Reactive extensions are not very reactive",
+      "isClosed": false,
+      "createdAt": "2016-12-30T07:20:58.307Z"
+    },
+    {
+      "id": 11,
+      "name": "blah blha blah",
+      "isClosed": false
+    }
+  ],
+  "employees": [
+    {
+      "id": 1,
+      "name": "Magesh"
+    },
+    {
+      "id": 2,
+      "name": "Suresh"
+    }
+  ]
+}

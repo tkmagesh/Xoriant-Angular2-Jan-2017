@@ -1,6 +1,7 @@
 interface IBug{
     id : number,
     name : string,
-    isClosed : boolean
+    isClosed : boolean,
+    createdAt : Date
 };
 export default IBug;

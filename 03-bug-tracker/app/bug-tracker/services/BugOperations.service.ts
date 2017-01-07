@@ -10,7 +10,8 @@ class BugOperations{
         return {
             id, 
             name,
-            isClosed : false
+            isClosed : false,
+            createdAt : new Date()
         };
     }
 
@@ -18,7 +19,8 @@ class BugOperations{
         return {
             id : bug.id,
             name : bug.name,
-            isClosed : !bug.isClosed
+            isClosed : !bug.isClosed,
+            createdAt : bug.createdAt
         }
         
     }
