@@ -14,9 +14,12 @@ import BugOperations from './services/BugOperations.service';
             </section>
             <section class="sort">
                 <label for="">Order By :</label>
-                <input type="text" name="" id="">
+                <select [(ngModel)]="sortAttrName">
+                    <option value="name">Name</option>
+                    <option value="isClosed">Status</option>
+                </select>
                 <label for="">Descending ? :</label>
-                <input type="checkbox" name="" id="">
+                <input type="checkbox" [(ngModel)]="sortOrder">
             </section>
             <section class="edit">
                 <label for="">New Bug :</label>
@@ -25,7 +28,7 @@ import BugOperations from './services/BugOperations.service';
             </section>
             <section class="list">
                 <ol>
-                    <li *ngFor="let bug of bugs">
+                    <li *ngFor="let bug of bugs | sort:sortAttrName:sortOrder">
                         <span 
                             class="bugname" 
                             (click)="toggle(bug)"
