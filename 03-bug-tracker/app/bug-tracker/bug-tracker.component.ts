@@ -1,7 +1,6 @@
 import { Component } from '@angular/core'
 import IBug  from './models/IBug';
-import BugOperations from './services/BugOperations.service';
-
+import { BugStorage } from './services/BugStorage.service';
 @Component({
     selector : 'bug-tracker',
     template : `
@@ -20,14 +19,11 @@ import BugOperations from './services/BugOperations.service';
             <bug-edit (onAddNew)="addNew($event)"></bug-edit>
             <section class="list">
                 <ol>
-                    <li *ngFor="let bug of bugs | sort:sortAttrName:sortOrder">
-                        <span 
-                            class="bugname" 
-                            (click)="toggle(bug)"
-                            [ngClass]="{closed : bug.isClosed}"
-                        >{{bug.name | trimText:40}}</span>
-                        <div class="datetime">[Created At]</div>
-                    </li>
+                    <bug-item 
+                        *ngFor="let bug of bugs | sort:sortAttrName:sortOrder" 
+                        [data]="bug"
+                        (onToggle) = "toggle($event)"
+                    ></bug-item>
                 </ol>
                 <input type="button" value="Remove Closed" (click)="removeClosed()">
             </section>
@@ -38,34 +34,28 @@ import BugOperations from './services/BugOperations.service';
 export class BugTrackerComponent{
     bugs : Array<IBug> = new Array<IBug>();
 
-    constructor(private bugOperations : BugOperations){
-
+    constructor(private bugStorage : BugStorage){
+        this.bugs = this.bugStorage.getAll();
     }
 
     toggle(toBeToggledBug : IBug){
-        this.bugs = this.bugs.map(bug => bug === toBeToggledBug ? this.bugOperations.toggle(bug) : bug);
+        this.bugs = this.bugs.map(bug => bug === toBeToggledBug ? this.bugStorage.toggle(bug) : bug);
     }
     addNew(newBugName : string){
-        let newBug = this.bugOperations.createNew(newBugName);
+        let newBug = this.bugStorage.save(newBugName);
         this.bugs = this.bugs.concat([newBug]);
         //this.bugs.push(newBug);
     }
 
     removeClosed(){
 
-        /*for(let index = this.bugs.length-1; index >=0; index-- ){
+        for(let index = this.bugs.length-1; index >=0; index-- ){
             if (this.bugs[index].isClosed)
+                this.bugStorage.remove(this.bugs[index]);
                 this.bugs.splice(index,1);
-        }*/
+        }
+ }
 
-        this.bugs = this.bugs.filter(function(bug){
-            return !bug.isClosed;
-        });
-    }
-
-    getClosedCount(){
-        console.info('get closed count triggered');
-        return this.bugs.filter(bug => bug.isClosed).length;
-    }
+   
 }
 

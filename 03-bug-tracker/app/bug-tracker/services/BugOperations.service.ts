@@ -5,19 +5,22 @@ import IBug from '../models/IBug';
 @Injectable()
 class BugOperations{
 
-    createNew(bugName : string) : IBug {
+    createNew(id : number , name : string) : IBug {
         
         return {
-            name : bugName,
+            id, 
+            name,
             isClosed : false
         };
     }
 
     toggle(bug : IBug) : IBug {
         return {
+            id : bug.id,
             name : bug.name,
             isClosed : !bug.isClosed
         }
+        
     }
 }
 
