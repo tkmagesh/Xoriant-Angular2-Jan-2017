@@ -7,11 +7,7 @@ import BugOperations from './services/BugOperations.service';
     template : `
         
         <section class="content">
-            <section class="stats">
-                <span class="closed">{{ bugs | closedCount }}</span>
-                <span> / </span>
-                <span>{{bugs.length}}</span>
-            </section>
+            <bug-stats [data] = "bugs" ></bug-stats>
             <section class="sort">
                 <label for="">Order By :</label>
                 <select [(ngModel)]="sortAttrName">
@@ -21,11 +17,7 @@ import BugOperations from './services/BugOperations.service';
                 <label for="">Descending ? :</label>
                 <input type="checkbox" [(ngModel)]="sortOrder">
             </section>
-            <section class="edit">
-                <label for="">New Bug :</label>
-                <input type="text" #txtBugName>
-                <input type="button" value="Add New" (click)="addNew(txtBugName.value)">
-            </section>
+            <bug-edit (onAddNew)="addNew($event)"></bug-edit>
             <section class="list">
                 <ol>
                     <li *ngFor="let bug of bugs | sort:sortAttrName:sortOrder">
@@ -55,8 +47,8 @@ export class BugTrackerComponent{
     }
     addNew(newBugName : string){
         let newBug = this.bugOperations.createNew(newBugName);
-        //this.bugs = this.bugs.concat([newBug]);
-        this.bugs.push(newBug);
+        this.bugs = this.bugs.concat([newBug]);
+        //this.bugs.push(newBug);
     }
 
     removeClosed(){
